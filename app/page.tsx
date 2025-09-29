@@ -23,6 +23,7 @@ export default function Home() {
           <h1>Senha:</h1>
           <input type="password" placeholder="Password"
             className="w-full p-3 border rounded-xl"/>
+            teste
         </div>
       </div>
     </div>
