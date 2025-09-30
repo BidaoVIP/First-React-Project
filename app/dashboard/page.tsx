@@ -21,7 +21,7 @@ export default function Dashboard() {
       ? JSON.parse(logadoString)
       : null;
 
-    if (!logado) {  
+    if (!logado) {
       router.push("/login");
     } else {
       setUsuario(logado);
