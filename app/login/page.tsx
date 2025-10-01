@@ -28,7 +28,7 @@ export default function Login() {
 
     if (usuarioValido) {
       localStorage.setItem("usuarioLogado", JSON.stringify(usuarioValido));
-      router.push("/rolao.tsx");
+      router.push("/dashboard");
     } else {
       setErro("E-mail ou senha incorretos");
     }
