@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FiAlertTriangle } from "react-icons/fi";
 
 export default function Home() {
     const router = useRouter();
@@ -38,9 +39,9 @@ export default function Home() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-blue-700">
-            <div className="bg-white p-8 rounded-2xl w-full max-w-md text-black font-bold">
-                <h1 className=" text-2xl text-center">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-700">
+            <div className="bg-white p-8 rounded-2xl w-full max-w-md text-black font-bold shadow-xl">
+                <h1 className=" text-3xl mb-6 font-extrabold tracking-wide text-center">
                     CADASTRO
                 </h1>
                 <div className="flex flex-col gap-4">
@@ -51,9 +52,9 @@ export default function Home() {
                             placeholder="Nome completo"
                             value={nome}
                             onChange={(e) => setNome(e.target.value)}
-                            className="p-3 border rounded-xl"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                         />
-                        {errors.nome && <span className="text-red-600 text-sm">{errors.nome}</span>}
+                        {errors.nome && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg"/>{errors.nome}</span>}
                     </label>
 
                     <label className="flex flex-col">
@@ -63,9 +64,9 @@ export default function Home() {
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="p-3 border rounded-xl"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                         />
-                        {errors.email && <span className="text-red-600 text-sm">{errors.email}</span>}
+                        {errors.email && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg"/>{errors.email}</span>}
                     </label>
 
                     <label className="flex flex-col">
@@ -74,9 +75,9 @@ export default function Home() {
                             type="date"
                             value={data}
                             onChange={(e) => setData(e.target.value)}
-                            className="p-3 border rounded-xl"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                         />
-                        {errors.data && <span className="text-red-600 text-sm">{errors.data}</span>}
+                        {errors.data && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg" />{errors.data}</span>}
                     </label>
 
                     <label className="flex flex-col">
@@ -86,13 +87,13 @@ export default function Home() {
                             placeholder="Password"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
-                            className="p-3 border rounded-xl"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                         />
-                        {errors.senha && <span className="text-red-600 text-sm">{errors.senha}</span>}
+                        {errors.senha && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-xl" />{errors.senha}</span>}
                     </label>
 
                     <button
-                        className="border p-3 rounded-xl bg-blue-600 text-white hover:bg-blue-900 transition"
+                        className="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-blue-900 transition-transform"
                         onClick={Salvar}
                     >
                         SALVAR
