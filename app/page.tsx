@@ -89,7 +89,7 @@ export default function Home() {
                             onChange={(e) => setSenha(e.target.value)}
                             className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
                         />
-                        {errors.senha && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-xl" />{errors.senha}</span>}
+                        {errors.senha && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-2xl" />{errors.senha}</span>}
                     </label>
 
                     <button

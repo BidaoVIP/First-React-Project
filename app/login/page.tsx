@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FiAlertTriangle } from "react-icons/fi";
 
 interface Usuario {
   nome: string;
@@ -35,9 +36,9 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-700">
-      <div className="p-8 rounded-2xl w-full bg-white max-w-md text-black font-bold">
-        <h1 className="text-2xl text-center">LOGIN</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-700">
+      <div className="bg-white p-8 rounded-2xl w-full max-w-md text-black font-bold shadow-xl">
+        <h1 className="text-3xl mb-6 font-extrabold tracking-wide text-center">LOGIN</h1>
         <div className="flex flex-col gap-y-4">
           <label className="flex flex-col">
             Usuário:
@@ -46,7 +47,7 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               type="text"
-              className="border p-3 rounded-2xl"
+              className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             />
           </label>
           <label className="flex flex-col">
@@ -56,16 +57,16 @@ export default function Login() {
               onChange={(e) => setSenha(e.target.value)}
               placeholder="Password"
               type="password"
-              className="border p-3 rounded-2xl"
+              className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
             />
           </label>
           <button
-            className="border p-3.5 rounded-xl bg-blue-600 text-white text-2xl hover:bg-blue-900 transition-all"
+            className="bw-full py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-blue-900 transition-transform"
             onClick={handleLogin}
           >
             LOGIN
           </button>
-          {erro && <span className="text-red-600 text-sm">{erro}</span>}
+          {erro && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-xl" />{erro}</span>}
         </div>
       </div>
     </div>
