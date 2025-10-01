@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
+import { CgLogIn } from "react-icons/cg";
 
 export default function Home() {
     const router = useRouter();
@@ -42,6 +43,7 @@ export default function Home() {
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-700">
             <div className="bg-white p-8 rounded-2xl w-full max-w-md text-black font-bold shadow-xl">
                 <h1 className=" text-3xl mb-6 font-extrabold tracking-wide text-center">
+                    <CgLogIn className="text"/>
                     CADASTRO
                 </h1>
                 <div className="flex flex-col gap-4">

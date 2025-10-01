@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
+import { CgLogIn } from "react-icons/cg";
 
 interface Usuario {
   nome: string;
@@ -38,7 +39,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-700">
       <div className="bg-white p-8 rounded-2xl w-full max-w-md text-black font-bold shadow-xl">
-        <h1 className="text-3xl mb-6 font-extrabold tracking-wide text-center">LOGIN</h1>
+        <h1 className="flex text-3xl mb-6 font-extrabold tracking-wide justify-center items-center gap-x-2"><CgLogIn />LOGIN</h1>
         <div className="flex flex-col gap-y-4">
           <label className="flex flex-col">
             Usuário:
