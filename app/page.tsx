@@ -40,10 +40,10 @@ export default function Home() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-700">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 to-black">
             <div className="bg-white p-8 rounded-2xl w-full max-w-md text-black font-bold shadow-xl">
-                <h1 className=" text-3xl mb-6 font-extrabold tracking-wide text-center">
-                    <CgLogIn className="text"/>
+                <h1 className="flex text-3xl mb-6 font-extrabold tracking-wide justify-center items-center gap-x-2">
+                    <CgLogIn />
                     CADASTRO
                 </h1>
                 <div className="flex flex-col gap-4">
@@ -54,7 +54,7 @@ export default function Home() {
                             placeholder="Nome completo"
                             value={nome}
                             onChange={(e) => setNome(e.target.value)}
-                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
                         />
                         {errors.nome && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg"/>{errors.nome}</span>}
                     </label>
@@ -66,7 +66,7 @@ export default function Home() {
                             placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
                         />
                         {errors.email && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg"/>{errors.email}</span>}
                     </label>
@@ -77,7 +77,7 @@ export default function Home() {
                             type="date"
                             value={data}
                             onChange={(e) => setData(e.target.value)}
-                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
                         />
                         {errors.data && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg" />{errors.data}</span>}
                     </label>
@@ -89,13 +89,13 @@ export default function Home() {
                             placeholder="Password"
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
-                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
                         />
                         {errors.senha && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-2xl" />{errors.senha}</span>}
                     </label>
 
                     <button
-                        className="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-blue-900 transition-transform"
+                        className="w-full py-3 rounded-xl bg-red-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-red-900 transition-transform"
                         onClick={Salvar}
                     >
                         SALVAR

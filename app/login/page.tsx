@@ -37,7 +37,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-700">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-700 to-black">
       <div className="bg-white p-8 rounded-2xl w-full max-w-md text-black font-bold shadow-xl">
         <h1 className="flex text-3xl mb-6 font-extrabold tracking-wide justify-center items-center gap-x-2"><CgLogIn />LOGIN</h1>
         <div className="flex flex-col gap-y-4">
@@ -48,7 +48,7 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               type="text"
-              className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
             />
           </label>
           <label className="flex flex-col">
@@ -58,11 +58,11 @@ export default function Login() {
               onChange={(e) => setSenha(e.target.value)}
               placeholder="Password"
               type="password"
-              className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+              className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
             />
           </label>
           <button
-            className="bw-full py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-blue-900 transition-transform"
+            className="bw-full py-3 rounded-xl bg-red-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-red-900 transition-transform"
             onClick={handleLogin}
           >
             LOGIN
