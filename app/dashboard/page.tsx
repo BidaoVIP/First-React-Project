@@ -29,6 +29,8 @@ export default function Dashboard() {
     }
   }, [router]);
 
+
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-700 to-black relative">
   <div className="absolute inset-0 bg-[url('/carro-bg.jpg')] bg-cover bg-center opacity-20"></div>
@@ -38,6 +40,7 @@ export default function Dashboard() {
   </h1>
   
   <button className="mt-6 px-6 py-3 rounded-full bg-red-600 text-white font-bold shadow-4xl hover:bg-red-700 transition">
+
     Entrar na Garagem
   </button>
 </div>

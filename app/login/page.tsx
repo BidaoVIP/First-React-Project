@@ -68,6 +68,11 @@ export default function Login() {
             LOGIN
           </button>
           {erro && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-xl" />{erro}</span>}
+
+          <div className="text-sm text-black">
+            Não tem cadastro? Clique em <a href="../" className="text-indigo-600 font-bold hover:underline">Cadastrar</a>
+          </div>
+
         </div>
       </div>
     </div>
