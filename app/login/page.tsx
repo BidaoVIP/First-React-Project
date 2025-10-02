@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FiAlertTriangle } from "react-icons/fi";
 import { CgLogIn } from "react-icons/cg";
+import { supabase } from "@/supabaseClient";
 
 interface Usuario {
   nome: string;
@@ -17,23 +18,24 @@ export default function Login() {
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!email || !senha) {
       setErro("Preencha todos os campos");
       return;
     }
-
-    const usuariosString = localStorage.getItem("usuarios");
-    const usuarios: Usuario[] = usuariosString ? JSON.parse(usuariosString) : [];
-
-    const usuarioValido = usuarios.find((u) => u.email === email && u.senha === senha);
-
-    if (usuarioValido) {
-      localStorage.setItem("usuarioLogado", JSON.stringify(usuarioValido));
-      router.push("/dashboard");
-    } else {
-      setErro("E-mail ou senha incorretos");
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setErro("Digite um e-mail válido");
+      return;
     }
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password: senha });
+
+    if (error) {
+      setErro("Email ou senha incorretos!");
+      return;
+    }
+
+    router.push("/dashboard");
   };
 
   return (
@@ -42,7 +44,7 @@ export default function Login() {
         <h1 className="flex text-3xl mb-6 font-extrabold tracking-wide justify-center items-center gap-x-2"><CgLogIn />LOGIN</h1>
         <div className="flex flex-col gap-y-4">
           <label className="flex flex-col">
-            Usuário:
+            Email:
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -62,16 +64,21 @@ export default function Login() {
             />
           </label>
           <button
-            className="bw-full py-3 rounded-xl bg-red-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-red-900 transition-transform"
+            className="w-full py-3 rounded-xl bg-red-600 text-white font-semibold shadow-xl hover:scale-105 hover:bg-red-900 transition-transform"
             onClick={handleLogin}
           >
             LOGIN
           </button>
-          {erro && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-xl" />{erro}</span>}
+          {erro && (
+            <div className="flex items-center gap-2 p-2 mt-2 text-sm text-red-700 bg-red-100 border border-red-400 rounded-lg">
+              <FiAlertTriangle className="text-xl" />
+              {erro}
+            </div>
+          )}
 
-          <div className="text-sm text-black">
-            Não tem cadastro? Clique em <a href="../" className="text-indigo-600 font-bold hover:underline">Cadastrar</a>
-          </div>
+
+          <a href="../" className="text-indigo-600 font-bold hover:underline">Cadastre-se</a>
+
 
         </div>
       </div>

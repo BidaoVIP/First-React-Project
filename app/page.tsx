@@ -115,7 +115,7 @@ export default function Home() {
                         SALVAR
                     </button>
                     <div className="text-sm text-black">
-                        Já tem cadastro? Clique em <a href="/login" className="text-indigo-600 font-bold hover:underline">Log in</a>
+                        Já tem cadastro? <a href="/login" className="text-indigo-600 font-bold hover:underline">Log in</a>
                     </div>
                 </div>
             </div>
