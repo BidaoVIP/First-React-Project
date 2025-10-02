@@ -1,8 +1,9 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { FiAlertTriangle } from "react-icons/fi";
-import { CgLogIn } from "react-icons/cg";
+import { supabase } from "../supabaseClient"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+import { FiAlertTriangle } from "react-icons/fi"
+import { CgLogIn } from "react-icons/cg"
 
 export default function Home() {
     const router = useRouter();
@@ -19,21 +20,34 @@ export default function Home() {
         senha: ""
     });
 
-    const Salvar = () => {
+    const Salvar = async () => {
         const newErrors = { nome: "", email: "", data: "", senha: "" };
 
         if (!nome) newErrors.nome = "Digite seu nome!";
         if (email.length < 9 || !email.includes("@")) newErrors.email = "Digite um email válido!";
         if (!data) newErrors.data = "Preencha a data de nascimento!";
-        if (senha.length < 6 || !/\d/.test(senha) || !/[!@#$%^&*(),.?":{}|<>]/.test(senha))
+        if (senha.length < 6 || !/\d/.test(senha) || !/[!@#$%^&*(),.?\":{}|<>]/.test(senha))
             newErrors.senha = "Senha inválida! Deve ter 6+ caracteres, um número e um caractere especial.";
 
         setErrors(newErrors);
         const hasErrors = Object.values(newErrors).some((e) => e !== "");
         if (!hasErrors) {
-            const usuarios = JSON.parse(localStorage.getItem("usuarios") || "[]");
-            usuarios.push({ nome, email, data, senha });
-            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+            const { data: authData, error: authError } = await supabase.auth.signUp({
+                email,
+                password: senha
+            });
+
+            if (authError) {
+                console.error(authError.message);
+                return;
+            }
+
+            if (authData.user) {
+                const { error: profileError } = await supabase.from("profiles").insert([
+                    { id: authData.user.id, name: nome, birth_date: data }
+                ]);
+                if (profileError) console.error(profileError.message);
+            }
 
             router.push("/login");
         }
@@ -56,7 +70,7 @@ export default function Home() {
                             onChange={(e) => setNome(e.target.value)}
                             className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
                         />
-                        {errors.nome && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg"/>{errors.nome}</span>}
+                        {errors.nome && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg" />{errors.nome}</span>}
                     </label>
 
                     <label className="flex flex-col">
@@ -68,7 +82,7 @@ export default function Home() {
                             onChange={(e) => setEmail(e.target.value)}
                             className="p-3 border border-gray-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition"
                         />
-                        {errors.email && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg"/>{errors.email}</span>}
+                        {errors.email && <span className="mt-1 flex gap-1 text-red-600 text-sm"><FiAlertTriangle className="text-lg" />{errors.email}</span>}
                     </label>
 
                     <label className="flex flex-col">
