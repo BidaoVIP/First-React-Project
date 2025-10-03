@@ -32,10 +32,7 @@ export default function Home() {
         setErrors(newErrors);
         const hasErrors = Object.values(newErrors).some((e) => e !== "");
         if (!hasErrors) {
-            const { data: authData, error: authError } = await supabase.auth.signUp({
-                email,
-                password: senha
-            });
+            const { data: authData, error: authError } = await supabase.auth.signUp({ email, password: senha });
 
             if (authError) {
                 console.error(authError.message);

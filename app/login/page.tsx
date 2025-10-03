@@ -76,9 +76,9 @@ export default function Login() {
             </div>
           )}
 
-
-          <a href="../" className="text-indigo-600 font-bold hover:underline">Cadastre-se</a>
-
+          <div className="text-sm text-black">
+            Não tem cadastro?<a href="../" className="text-indigo-600 font-bold hover:underline">Cadastre-se</a>
+          </div>
 
         </div>
       </div>
