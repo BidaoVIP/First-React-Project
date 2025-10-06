@@ -6,7 +6,7 @@ import { supabase } from "@/supabaseClient";
 interface Usuario {
   id: string;
   email: string | null;
-  nome?: string;
+  nome: string;
 }
 
 export default function Dashboard() {
@@ -16,20 +16,25 @@ export default function Dashboard() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
+      const { data: authData, error: authError } = await supabase.auth.getUser();
 
-      if (error || !data.user) {
+      if (authError || !authData.user) {
         router.push("/login");
         return;
       }
 
-      const user: Usuario = {
-        id: data.user.id,
-        email: data.user.email || null,
-        nome: data.user.user_metadata?.name || data.user.email || "Usuário",
-      };
+      const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("name_user")
+        .eq("id", authData.user.id)
+        .single();
 
-      setUsuario(user);
+      setUsuario({
+        id: authData.user.id,
+        email: authData.user.email ?? null, 
+        nome: profile?.name_user ?? authData.user.email ?? "Usuário",
+      });
+
       setLoading(false);
     };
 
@@ -44,20 +49,20 @@ export default function Dashboard() {
     );
   }
 
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-700 to-black relative">
       <div className="absolute inset-0 bg-[url('/carro-bg.jpg')] bg-cover bg-center"></div>
 
-      <h1 className="text-red-600 text-4xl font-extrabold tracking-widest">
-        {usuario ? `Bem-vindo, ${usuario.nome}!` : "Carregando..."}
+      <h1 className="text-red-600 text-4xl font-extrabold tracking-widest z-10">
+        {`Bem-vindo, ${usuario?.nome}!`}
       </h1>
 
-      <button className="mt-6 px-6 py-3 rounded-full bg-red-600 text-white font-bold shadow-4xl hover:bg-red-700 transition">
-        {/* onClick={() => router.push("/garagem")} */}
+      <button
+        className="mt-6 px-6 py-3 rounded-full bg-red-600 text-white font-bold shadow-4xl hover:bg-red-700 transition z-10"
+        onClick={() => router.push("/garagem")}
+      >
         Entrar na Garagem
       </button>
     </div>
-
   );
 }

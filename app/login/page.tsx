@@ -5,26 +5,25 @@ import { FiAlertTriangle } from "react-icons/fi";
 import { CgLogIn } from "react-icons/cg";
 import { supabase } from "@/supabaseClient";
 
-interface Usuario {
-  nome: string;
-  email: string;
-  senha: string;
-  data: string;
-}
-
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  const handleLogin = async () => {
+    const handleLogin = async () => {
+    setErro("");
+
     if (!email || !senha) {
       setErro("Preencha todos os campos");
       return;
     }
     if (!/\S+@\S+\.\S+/.test(email)) {
-      setErro("Digite um e-mail válido");
+      setErro("Email inválido");
+      return;
+    }
+    if (senha.length < 6) {
+      setErro("Senha inválida");
       return;
     }
 
@@ -32,6 +31,23 @@ export default function Login() {
 
     if (error) {
       setErro("Email ou senha incorretos!");
+      return;
+    }
+
+    if (!data.user) {
+      setErro("Falha ao obter dados do usuário");
+      return;
+    }
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", data.user.id)
+      .single();
+
+    if (profileError) {
+      console.error(profileError.message);
+      setErro("Falha ao carregar perfil");
       return;
     }
 

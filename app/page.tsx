@@ -35,15 +35,18 @@ export default function Home() {
             const { data: authData, error: authError } = await supabase.auth.signUp({ email, password: senha });
 
             if (authError) {
-                console.error(authError.message);
+                setErrors(prev => ({ ...prev, email: authError.message }));
                 return;
             }
 
             if (authData.user) {
                 const { error: profileError } = await supabase.from("profiles").insert([
-                    { id: authData.user.id, name: nome, birth_date: data }
+                    { id: authData.user.id, user_name: nome, birth_date: data }
                 ]);
-                if (profileError) console.error(profileError.message);
+                if (profileError) {
+                    setErrors(prev => ({ ...prev, nome: profileError.message }));
+                    return;
+                }
             }
 
             router.push("/login");
