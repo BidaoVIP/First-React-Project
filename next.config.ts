@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  base: "/First-React-Project",
-};
+const nextConfig = {
+  assetPrefix: '/my-app/',
+  basePath: '/my-app',
+}
+
 
 export default nextConfig;
