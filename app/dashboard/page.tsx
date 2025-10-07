@@ -79,6 +79,8 @@ export default function Dashboard() {
       >
         Entrar na Garagem
       </motion.button>
+    
+    
     </div>
   );
 }
