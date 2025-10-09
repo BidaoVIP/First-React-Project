@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Garagem() {
     const router = useRouter();
-    const [ user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<any>(null);
 
     useEffect(() => {
         const getUser = async () => {
@@ -25,35 +25,41 @@ export default function Garagem() {
 
     return (
         <div className="min-h-screen bg-white">
-            <nav className="fixed w-full text-white z-50 bg-blue-700">
-                <div className="max-w-6xl mx-auto py-3 flex bg-amber-600">
+            <nav className="fixed w-full text-white z-50 bg-blue-700 ">
+                <div className="py-4 flex justify-between">
+                    
+                    <div className="flex items-center">
+                        <span className="ml-3 font-bold">logo dessa prr</span>
+                    </div>
 
+                    <div className="flex gap-8 text-lg">
+                        <Link href="/garagem" className="hover:text-gray-300 transition">
+                            Garagem
+                        </Link>
+                        <Link href="/favoritos" className="hover:text-gray-300 transition">
+                            Favoritos
+                        </Link>
+                        <Link href="/sobre" className="hover:text-gray-300 transition">
+                            Sobre nós
+                        </Link>
+                    </div>
 
-
-                    <div className="flex gap-x-6">
+                    <div className="flex items-center mr-3">
                         {user ? (
-                            <>
-                                <Link href="/dashboard" className="hover:text-gray-300">
-                                    Sobre nós
-                                </Link>
-                                <button
-                                    onClick={handleLogout}
-                                    className="hover:text-red-400 transition"
-                                >
-                                    Sair
-                                </button>
-                            </>
+                            <button onClick={handleLogout} className="hover:opacity-80 transition">
+                                <img
+                                    src="/perfil.jpg"
+                                    alt="Perfil"
+                                    className="h-10 w-10 rounded-full border-2 border-white object-cover"
+                                />
+                            </button>
                         ) : (
-                            <>
-                                <Link href="/login" className="hover:text-gray-300">
-                                    Login
-                                </Link>
-                                <Link href="/signup" className="hover:text-gray-300">
-                                    Criar conta
-                                </Link>
-                            </>
+                            <Link href="/login" className="hover:text-gray-300">
+                                Entrar
+                            </Link>
                         )}
                     </div>
+                    
                 </div>
             </nav>
         </div>
