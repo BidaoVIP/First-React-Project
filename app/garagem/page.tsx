@@ -26,27 +26,27 @@ export default function Garagem() {
     return (
         <div className="min-h-screen flex">
             <div className="fixed w-full text-white z-50 bg-black ">
-                <div className="flex h-24 justify-between">
+                <div className="flex h-24 justify-between items-center px-4 md:px-8 flex-wrap">
 
                     <div className="flex items-center">
-                        <img src="/logo.png" alt="Logo" className=" ml-7 h-10 w-auto" />
+                        <img src="/logo.png" alt="Logo" className="ml-4 md:ml-7 h-8 md:h-10 w-auto" />
                         {/* <span className="font-bold">logo</span> */}
                     </div>
 
-                    <div className="flex items-center text-xl w-xl font-bold ">
+                    <div className="flex flex-wrap items-center justify-center text-lg md:text-xl font-bold gap-2 md:gap-5">
                         <button
                             onClick={() => router.push("/garagem")}
-                            className="hover:bg-gray-600 p-2 h-full w-full transition">
+                            className="hover:bg-gray-600 px-3 py-2 rounded-md transition">
                             Garagem
                         </button>
                         <button
                             onClick={() => router.push("/favoritos")}
-                            className="hover:bg-gray-600 p-2 h-full w-full transition">
+                            className="hover:bg-gray-600 px-3 py-2 rounded-md transition">
                             Favoritos
                         </button>
                         <button
                             onClick={() => router.push("/dashboard")}
-                            className="hover:bg-gray-600 p-2 h-full w-full transition">
+                            className="hover:bg-gray-600 px-3 py-2 rounded-md transition">
                             Sobre nós
                         </button>
                     </div>
@@ -61,37 +61,35 @@ export default function Garagem() {
                                 />
                             </button>
                         ) : (
-                            <Link href="/login" className="hover:text-gray-300">
+                            <button onClick={() => router.push("/login")}
+                                className="hover:bg-gray-600 px-3 py-2 rounded-md transition font-bold border"
+                            >
                                 Entrar
-                            </Link>
+                            </button>
                         )}
                     </div>
                 </div>
             </div>
-            <div className="min-h-screen w-full bg-neutral-500 flex items-center justify-center mt-20">
-                <section className="w-11/12 max-w-7xl bg-neutral-900 rounded-3xl p-10 border border-red-700/40">
-                    <h2 className="text-3xl font-extrabold tracking-wide text-red-500 mb-10 text-center">
-                        Nossa Garagem
-                    </h2>
+            <div className="min-h-screen w-full bg-neutral-900 flex flex-col items-center justify-center md:px-12 py-24">
+                <h2 className="text-3xl font-extrabold tracking-wide text-red-600 text-center">
+                    Nossa Garagem
+                </h2>
 
-                    <div className="max-h-[70vh] overflow-y-scroll pr-2 scrollbar-thin scrollbar-thumb-red-600 scrollbar-track-neutral-800 rounded-xl">
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 pb-4">
-                            {[...Array(16)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    className="bg-neutral-800 hover:bg-neutral-700 transition-colors shadow-md hover:shadow-red-500/20 rounded-2xl p-7 border border-neutral-700/60"
-                                >
-                                    <div className="h-40 w-full bg-neutral-700 rounded-xl mb-4 flex items-center justify-center text-neutral-400">
-                                        Imagem
-                                    </div>
-                                    <h3 className="text-lg font-semibold text-white">Carro {i + 1}</h3>
-                                    <p className="text-neutral-400 text-sm">Descrição breve aqui</p>
-                                </div>
-                            ))}
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 mt-15 gap-8 pb-4">
+                    {[...Array(16)].map((_, i) => (
+                        <div
+                            key={i}
+                            className="bg-neutral-800 hover:bg-neutral-700 transition-all duration-300 shadow-lg hover:shadow-red-500/20 rounded-2xl min-w-96 md:p-8 border border-red-700/60 transform hover:-translate-y-2"
+                        >
+                            <div className="h-40 md:h-48 w-full bg-neutral-500 rounded-xl mb-6 flex items-center justify-center text-neutral-400">
+                                image
+                            </div>
+                            <h3 className="text-lg font-semibold text-white">Carro {i + 1}</h3>
+                            <p className="text-neutral-300 text-sm">Descrição breve aqui</p>
                         </div>
-                    </div>
-                </section>
+                    ))}
+                </div>
             </div>
         </div>
     );
