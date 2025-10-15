@@ -2,8 +2,6 @@
 import { supabase } from "@/supabaseClient";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from "next/link";
-
 
 export default function Garagem() {
     const router = useRouter();
@@ -30,15 +28,39 @@ export default function Garagem() {
 
                     <div className="flex items-center">
                         <img src="/logo.png" alt="Logo" className="ml-4 md:ml-7 h-8 md:h-10 w-auto" />
-                        {/* <span className="font-bold">logo</span> */}
                     </div>
 
                     <div className="flex flex-wrap items-center justify-center text-lg md:text-xl font-bold gap-2 md:gap-5">
-                        <button
-                            onClick={() => router.push("/garagem")}
-                            className="hover:bg-gray-600 px-3 py-2 rounded-md transition">
-                            Garagem
-                        </button>
+                        <div className="relative group">
+                            <button
+                                className="hover:bg-gray-600 px-3 py-2 rounded-md transition flex items-center gap-1"
+                            >
+                                Garagem
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4 text-gray-300 group-hover:rotate-180 transition-transform"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
+                            <div className="absolute left-0 w-44 bg-neutral-800 border border-red-700/60 rounded-md shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-200">
+                                <button
+                                    onClick={() => router.push("/garagem")}
+                                    className="block w-full text-left px-4 py-2 text-gray-200 hover:bg-neutral-700 transition"
+                                >
+                                    Garagem
+                                </button>
+                                <button
+                                    onClick={() => router.push("/minha-garagem")}
+                                    className="block w-full text-left px-4 py-2 text-gray-200 hover:bg-neutral-700 transition"
+                                >
+                                    Minha Garagem
+                                </button>
+                            </div>
+                        </div>
                         <button
                             onClick={() => router.push("/favoritos")}
                             className="hover:bg-gray-600 px-3 py-2 rounded-md transition">
@@ -70,7 +92,7 @@ export default function Garagem() {
                     </div>
                 </div>
             </div>
-            <div className="min-h-screen w-full bg-neutral-900 flex flex-col items-center justify-center md:px-12 py-24">
+            <div className="min-h-screen w-full bg-neutral-900 flex flex-col items-center justify-center md:px-12 py-34">
                 <h2 className="text-3xl font-extrabold tracking-wide text-red-600 text-center">
                     Nossa Garagem
                 </h2>
